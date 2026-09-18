@@ -362,7 +362,7 @@ input:focus,select:focus{border-color:var(--red);background:#fff}
 
     <div class="actions">
       <a class="btn btn-red" id="payBtn" href="#" target="_blank" rel="noopener">Tempah dan tebus</a>
-      <button class="btn btn-line" type="button" id="saveBtn">Simpan gambar e-voucher</button>
+      <button class="btn btn-line" type="button" id="saveBtn">Muat turun e-voucher</button>
       <a class="btn btn-green" id="waBtn" href="#" target="_blank" rel="noopener">Tanya perunding di WhatsApp</a>
     </div>
   </main>
@@ -732,7 +732,9 @@ function protoClaim(p){
   db.leads.unshift(lead);
   db.log.unshift(
     {t:now,type:'auto',lead:lead.ref_no,msg:`Lead ${lead.ref_no} diagih kepada ${desk}`},
+    {t:now,type:'auto',lead:lead.ref_no,msg:`WhatsApp pendaftar baru dihantar kepada perunding ${desk}`},
     {t:now,type:'auto',lead:lead.ref_no,msg:`Email e-voucher dihantar ke ${lead.email}`},
+    {t:now,type:'auto',lead:lead.ref_no,msg:`WhatsApp pengesahan e-voucher dihantar ke +${lead.phone.slice(0,4)}xxx${lead.phone.slice(-4)}`},
     {t:now,type:'lead',lead:lead.ref_no,msg:`${lead.name} mendaftar voucher di ${(lead.station_name||'dalam talian').replace(/^Buraqoil /,'')}`}
   );
   protoSave(db);
